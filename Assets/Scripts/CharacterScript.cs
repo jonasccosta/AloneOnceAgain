@@ -7,6 +7,8 @@ public class CharacterScript : MonoBehaviour
     public float speed = 5.0f;
     Rigidbody2D rigidBody;
 
+    bool isGrounded = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,9 +31,23 @@ public class CharacterScript : MonoBehaviour
         }
         rigidBody.velocity = movement;
 
-        if (Input.GetKeyDown(KeyCode.UpArrow)){
+        // Allow jumps only if the character is in the ground
+        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded){
             rigidBody.AddForce(new Vector2(0, speed), ForceMode2D.Impulse);
+            isGrounded = false;
         }
         
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Floor")
+        {
+            //If the characters collides with the floor, then set isGrounded to true
+            isGrounded = true;
+        }
+        
+    }
+
+
 }
