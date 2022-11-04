@@ -6,8 +6,6 @@ public class CharacterScript : MonoBehaviour
 {
     public float speed = 5.0f;
     Rigidbody2D rigidBody;
-    public Transform playerPos;
-
     bool isGrounded = true;
     bool intWObj = false;
 
@@ -15,7 +13,6 @@ public class CharacterScript : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        playerPos = gameObject.transform;
     }
 
     // Update is called once per frame
@@ -23,31 +20,40 @@ public class CharacterScript : MonoBehaviour
     {
         Vector2 movement;
         movement.y = rigidBody.velocity.y;
+
         if(Input.GetKey(KeyCode.RightArrow) == true){
             movement.x = speed;    
         }
         else if (Input.GetKey(KeyCode.LeftArrow) == true){
             movement.x = -speed;
         }
-        else{
+        else {
             movement.x = 0;
         }
         rigidBody.velocity = movement;
 
-        // Allow jumps only if the character is in the ground
-        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded){
-            rigidBody.AddForce(new Vector2(0, speed), ForceMode2D.Impulse);
-            isGrounded = false;
+        if(Input.GetKey(KeyCode.X) == true){
+            intWObj = true; 
+            speed = 3.0f;   
         }
-
-        if (Input.GetKeyDown(KeyCode.X)){
-            intWObj = true;
-        }
-        else if (Input.GetKeyUp(KeyCode.X)){
+        else if (Input.GetKeyUp(KeyCode.X) == true){
             intWObj = false;
             speed = 5.0f;
         }
 
+        // Allow jumps only if the character is in the ground and is not interacting with an object (pushing/pulling)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded && !intWObj){
+            rigidBody.AddForce(new Vector2(0, speed), ForceMode2D.Impulse);
+            isGrounded = false;
+        }
+
+        // Allows the character to run (by using left shift)
+        if (Input.GetKeyDown(KeyCode.LeftShift)){
+            speed = 6.5f;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift)){
+            speed = 5.0f;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -56,26 +62,8 @@ public class CharacterScript : MonoBehaviour
 
         if (collision.gameObject.tag == "Floor")
         {
-            //If the characters collides with the floor, then set isGrounded to true
+            // If the characters collides with the floor, then set isGrounded to true
             isGrounded = true;
-        }
-    }
-
-    void OnCollisionStay2D(Collision2D collision)
-    {
-        Rigidbody2D objectBody = collision.rigidbody;
-
-        // If the player collides if a movable object and presses X, they are able to push the object
-        // The object needs to have a high mass so it doesn't slide too fast
-        if (intWObj == true && collision.gameObject.tag == "MovableObject")
-        {
-            objectBody.constraints = RigidbodyConstraints2D.None;
-            speed = 3.0f;
-        }
-        else if (intWObj == false && collision.gameObject.tag == "MovableObject")
-        {
-            objectBody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionX | 
-            RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         }
     }
 }
