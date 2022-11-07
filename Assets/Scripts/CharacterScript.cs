@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterScript : MonoBehaviour
 {
-    public float speed = 5.0f;
+    public float speed = 4.0f;
     Rigidbody2D rigidBody;
     bool isGrounded = true;
     bool intWObj = false;
@@ -23,52 +23,10 @@ public class CharacterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 movement;
-        movement.y = rigidBody.velocity.y;
-
-        if(Input.GetKey(KeyCode.RightArrow) == true){
-            movement.x = speed;
-            currentAction = "Walking Foward";    
-        }
-
-        else if (Input.GetKey(KeyCode.LeftArrow) == true){
-            movement.x = -speed;
-            currentAction = "Walking To Left";    
-        }
-        else {
-            movement.x = 0;    
-        }
-
-        rigidBody.velocity = movement;
-
-        if(Input.GetKey(KeyCode.X) == true){
-            intWObj = true; 
-            speed = 3.0f;   
-        }
-        else if (Input.GetKeyUp(KeyCode.X) == true){
-            intWObj = false;
-            speed = 5.0f;
-        }
-
-
-        // Allow jumps only if the character is in the ground and is not interacting with an object (pushing/pulling)
-        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded && !intWObj){
-            rigidBody.AddForce(new Vector2(0, speed), ForceMode2D.Impulse);
-            isGrounded = false;
-            currentAction = "Jumping";
-        }
-
-
-        // Allows the character to run (by using left shift)
-        if (Input.GetKeyDown(KeyCode.LeftShift)){
-            speed = 6.5f;
-            currentAction = "Running Foward";
-        }
-        else if (Input.GetKeyUp(KeyCode.LeftShift)){
-            speed = 5.0f;
-            currentAction = "Running Left";
-        }
-
+        Walk();
+        Jump();
+        PushPull();
+        Run();
         Animate();
     }
 
@@ -84,8 +42,14 @@ public class CharacterScript : MonoBehaviour
         }
     }
 
+    // Update the Character Animation based on the current action the player is doing
     void Animate(){
-        if (currentAction == "Walking Foward"){
+        if (!Input.anyKey)
+        {
+            anim.Play("Idle Animation");;
+        }
+
+        else if (currentAction == "Walking Foward"){
              anim.Play("Walking Foward Animation");
         }
 
@@ -105,8 +69,59 @@ public class CharacterScript : MonoBehaviour
             anim.Play("Walking To Left Animation");
         }
 
+    }
+
+    // Updates the character x's position, moving it to the right or left based on user input
+    void Walk(){
+        Vector2 movement;
+        movement.y = rigidBody.velocity.y;
+
+        if(Input.GetKey(KeyCode.RightArrow) == true){
+            movement.x = speed;
+            currentAction = "Walking Foward";    
+        }
+
+        else if (Input.GetKey(KeyCode.LeftArrow) == true){
+            movement.x = -speed;
+            currentAction = "Walking To Left";    
+        }
         else {
-            anim.Play("Idle Animation");
+            movement.x = 0;    
+        }
+
+        rigidBody.velocity = movement;
+    }
+
+    // Allow jumps only if the character is in the ground and is not interacting with an object (pushing/pulling)
+    void Jump(){
+        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded && !intWObj){
+            rigidBody.AddForce(new Vector2(0, speed), ForceMode2D.Impulse);
+            isGrounded = false;
+            currentAction = "Jumping";
+        }
+    }
+
+    void PushPull(){
+        if(Input.GetKey(KeyCode.X) == true){
+            intWObj = true; 
+            speed = 3.0f;   
+        }
+        else if (Input.GetKeyUp(KeyCode.X) == true){
+            intWObj = false;
+            speed = 5.0f;
+        }
+
+    }
+
+    // Allows the character to run (by using left shift)
+    void Run(){
+         if (Input.GetKeyDown(KeyCode.LeftShift)){
+            speed = 6.5f;
+            currentAction = "Running Foward";
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift)){
+            speed = 5.0f;
+            currentAction = "Running Left";
         }
     }
 }
