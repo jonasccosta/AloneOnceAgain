@@ -40,6 +40,13 @@ public class CharacterScript : MonoBehaviour
             isGrounded = true;
             
         }
+
+         if (collision.gameObject.tag == "Obstacle")
+        {
+            // If the characters collides with an obstacle, restart its position
+            rigidBody.position = new Vector2(5.0f, -1.74f);
+            
+        }
     }
 
     // Update the Character Animation based on the current action the player is doing
