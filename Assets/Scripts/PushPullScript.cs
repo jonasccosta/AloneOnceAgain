@@ -40,7 +40,7 @@ public class PushPullScript : MonoBehaviour
     public void OnTriggerExit2D(Collider2D obj)
     {
         if (obj.tag == "MovableObject" && !pushPull){
-            playerBody.transform.DetachChildren();
+            obj.transform.SetParent(null);
             print("detached children"); // for debugging
         }
     }
