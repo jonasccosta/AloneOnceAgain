@@ -50,25 +50,29 @@ public class CharacterScript : MonoBehaviour
             anim.Play("Idle Animation");;
         }
 
-        else if (currentAction == "Walking Foward"){
-             anim.Play("Walking Foward Animation");
-        }
-
-        else if (currentAction == "Running Foward"){
-            anim.Play("Running Foward Animation");
-        }
-
-        else if (currentAction == "Running Left"){
-            anim.Play("Running Left Animation");
-        }
-
         else if (currentAction == "Jumping"){
             anim.Play("Jumping Animation");
         }
 
-        else if (currentAction == "Walking To Left"){
-            anim.Play("Walking To Left Animation");
+        else if (isGrounded){
+
+            if (currentAction == "Walking Foward"){
+                anim.Play("Walking Foward Animation");
+            }
+
+            else if (currentAction == "Running Foward"){
+                anim.Play("Running Foward Animation");
+            }
+
+            else if (currentAction == "Running Left"){
+                anim.Play("Running Left Animation");
+            }
+
+            else if (currentAction == "Walking To Left"){
+                anim.Play("Walking To Left Animation");
+            }
         }
+
 
     }
 
@@ -89,7 +93,7 @@ public class CharacterScript : MonoBehaviour
         }
 
         else {
-                movement.x = 0;    
+            movement.x = 0;    
         }
 
 
