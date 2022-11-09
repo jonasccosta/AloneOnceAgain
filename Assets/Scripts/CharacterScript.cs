@@ -40,13 +40,36 @@ public class CharacterScript : MonoBehaviour
             isGrounded = true;
             
         }
+         
+        if (collision.gameObject.tag == "Obstacle"){
+            CollisionWithObstacle(collision);
+         }
 
-         if (collision.gameObject.tag == "Obstacle")
-        {
-            // If the characters collides with an obstacle, restart its position
-            rigidBody.position = new Vector2(5.0f, -1.74f);
+        
+    }
+
+    void CollisionWithObstacle(Collision2D collision){
+
+        // Find if Character has a MovableObject attached
+        bool attached = false;
+        for (var i = 0; i < transform.childCount; ++i) {
+            if( transform.GetChild(i).tag == "MovableObject"){
+                attached = true;
+            }
             
         }
+
+        // If the character collides with an obstacle without the dumpster, restart its position
+        if(!attached) {
+            rigidBody.position = new Vector2(0.0f, -1.74f);
+        }
+
+        // If the characters collides with an obstacle with the dumpster, remove the obstacle
+        else {
+            
+           Destroy(collision.gameObject);
+        }
+
     }
 
     // Update the Character Animation based on the current action the player is doing
