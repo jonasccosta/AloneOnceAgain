@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterScript : MonoBehaviour
 {
-    public float speed = 4.0f;
+    public float speed = 3.0f;
     Rigidbody2D rigidBody;
     bool isGrounded = true;
     bool intWObj = false;
@@ -28,13 +29,14 @@ public class CharacterScript : MonoBehaviour
         PushPull();
         Run();
         Animate();
+        GameOver();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         Rigidbody2D objectBody = collision.rigidbody;
 
-        if (collision.gameObject.tag == "Floor")
+        if (collision.gameObject.tag == "Floor" )
         {
             // If the characters collides with the floor, then set isGrounded to true
             isGrounded = true;
@@ -61,7 +63,7 @@ public class CharacterScript : MonoBehaviour
 
         // If the character collides with an obstacle without the dumpster, restart its position
         if(!attached) {
-            rigidBody.position = new Vector2(0.0f, -1.74f);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         // If the characters collides with an obstacle with the dumpster, remove the obstacle
@@ -74,7 +76,11 @@ public class CharacterScript : MonoBehaviour
 
     // Update the Character Animation based on the current action the player is doing
     void Animate(){
-        if (Input.GetKey(KeyCode.RightArrow) == false && Input.GetKey(KeyCode.LeftArrow) == false && Input.GetKey(KeyCode.UpArrow) == false && Input.GetKey(KeyCode.X) == false && Input.GetKey(KeyCode.LeftShift) == false)
+        if (!isGrounded){
+             anim.Play("Jumping Animation");
+        }
+
+        else if (Input.GetKey(KeyCode.RightArrow) == false && Input.GetKey(KeyCode.LeftArrow) == false && Input.GetKey(KeyCode.UpArrow) == false && Input.GetKey(KeyCode.X) == false && Input.GetKey(KeyCode.LeftShift) == false)
         {
             currentAction = "Idle";
             anim.Play("Idle Animation");;
@@ -135,21 +141,30 @@ public class CharacterScript : MonoBehaviour
     // Allow jumps only if the character is in the ground and is not interacting with an object (pushing/pulling)
     void Jump(){
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded && !intWObj){
-            rigidBody.AddForce(new Vector2(0, speed), ForceMode2D.Impulse);
+            rigidBody.AddForce(new Vector2(0, 1.3f*speed), ForceMode2D.Impulse);
             isGrounded = false;
             currentAction = "Jumping";
         }
     }
 
     void PushPull(){
+        Vector2 movement;
+        movement.y = rigidBody.velocity.y;
+
         if(Input.GetKey(KeyCode.X) == true){
             intWObj = true; 
-            speed = 3.0f;   
+            speed = 2.0f;   
+            movement.x = speed;
+            rigidBody.velocity = movement; 
         }
         else if (Input.GetKeyUp(KeyCode.X) == true){
             intWObj = false;
-            speed = 5.0f;
+            speed = 3.0f;
+            movement.x = speed;
+            rigidBody.velocity = movement; 
         }
+
+        
 
     }
 
@@ -157,21 +172,24 @@ public class CharacterScript : MonoBehaviour
     void Run(){
         Vector2 movement;
         movement.y = rigidBody.velocity.y;
-        speed = 6.5f;
+        
 
         if (Input.GetKey(KeyCode.LeftShift)){
              if(Input.GetKey(KeyCode.RightArrow) == true){
+                speed = 6.5f;
                 movement.x = speed;
                 currentAction = "Running Foward";   
             }
 
             else if (Input.GetKey(KeyCode.LeftArrow) == true){
+                speed = 6.5f;
                 movement.x = -speed;
                 currentAction = "Running Left";    
             
             }
 
             else {
+                speed = 3.0f;
                 movement.x = 0;    
             }
 
@@ -181,6 +199,13 @@ public class CharacterScript : MonoBehaviour
          
          }
 
-        
+
+    }
+
+    // Restart the scene if Violet Drops
+    void GameOver(){
+        if (rigidBody.position.y < -5.0f){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }
