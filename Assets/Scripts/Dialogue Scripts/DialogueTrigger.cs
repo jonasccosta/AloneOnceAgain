@@ -8,6 +8,7 @@ public class DialogueTrigger : MonoBehaviour
     public DialogueManager dialogueManager;
 
     public void OnTriggerEnter2D(Collider2D other){
+        print("dialogue triggered");
         dialogueManager.StartDialogue(dialogue);
     }
 }

@@ -29,7 +29,6 @@ public class PushPullScript : MonoBehaviour
     // Allows player to push/pull correctly tagged objects
     public void OnTriggerEnter2D(Collider2D obj)
     {
-        print("activated"); // for debugging
         if (obj.tag == "MovableObject" && pushPull){
             obj.transform.SetParent(playerBody.transform);
             print("parent made"); // for debugging

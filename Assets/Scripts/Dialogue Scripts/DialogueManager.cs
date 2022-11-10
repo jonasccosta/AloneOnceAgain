@@ -29,7 +29,7 @@ public class DialogueManager : MonoBehaviour
             return;
         }
         string sentence = currentSentence.text;
-        //dialogueUIText.text = sentence;
+        dialogueUIText.text = sentence;
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
     }
@@ -38,11 +38,12 @@ public class DialogueManager : MonoBehaviour
         dialogueUIText.text = "";
         foreach(char letter in sentence.ToCharArray()){
             dialogueUIText.text += letter;
+            print(dialogueUIText.text);
             yield return new WaitForSeconds(0.05f);
         }
     }
 
     void EndDialogue(){
-        dialogueCanvas.enabled = false;
+        dialogueUIText.text = "";
     }
 }
