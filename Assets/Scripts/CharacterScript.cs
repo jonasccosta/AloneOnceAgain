@@ -23,7 +23,8 @@ public class CharacterScript : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        Idle();
         Walk();
         Jump();
         PushPull();
@@ -78,6 +79,15 @@ public class CharacterScript : MonoBehaviour
     void Animate(){
         if (!isGrounded){
              anim.Play("Jumping Animation");
+
+             // If running and jumping, decrease the animation speed
+             if(speed > 3.0f){
+                anim.speed = 0.6f;
+            }
+
+            else{
+                anim.speed = 1.0f;
+            }
         }
 
         else if (Input.GetKey(KeyCode.RightArrow) == false && Input.GetKey(KeyCode.LeftArrow) == false && Input.GetKey(KeyCode.UpArrow) == false && Input.GetKey(KeyCode.X) == false && Input.GetKey(KeyCode.LeftShift) == false)
@@ -86,13 +96,13 @@ public class CharacterScript : MonoBehaviour
             anim.Play("Idle Animation");;
         }
 
-        else if (currentAction == "Jumping"){
-            anim.Play("Jumping Animation");
-        }
-
         else if (isGrounded){
 
-            if (currentAction == "Walking Foward"){
+            if (currentAction == "Pushing"){
+                anim.Play("Pushing Animation");
+            }
+
+            else if (currentAction == "Walking Foward"){
                 anim.Play("Walking Foward Animation");
             }
 
@@ -107,9 +117,17 @@ public class CharacterScript : MonoBehaviour
             else if (currentAction == "Walking To Left"){
                 anim.Play("Walking To Left Animation");
             }
+
         }
 
 
+    }
+
+    void Idle(){
+        if (Input.GetKey(KeyCode.RightArrow) == false && Input.GetKey(KeyCode.LeftArrow) == false && Input.GetKey(KeyCode.UpArrow) == false && Input.GetKey(KeyCode.X) == false && Input.GetKey(KeyCode.LeftShift) == false){
+            currentAction = "Idle";
+            speed = 3.0f;
+        }
     }
 
     // Updates the character x's position, moving it to the right or left based on user input
@@ -141,7 +159,7 @@ public class CharacterScript : MonoBehaviour
     // Allow jumps only if the character is in the ground and is not interacting with an object (pushing/pulling)
     void Jump(){
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded && !intWObj){
-            rigidBody.AddForce(new Vector2(0, 1.3f*speed), ForceMode2D.Impulse);
+            rigidBody.AddForce(new Vector2(0, 1.5f*speed), ForceMode2D.Impulse);
             isGrounded = false;
             currentAction = "Jumping";
         }
@@ -151,19 +169,28 @@ public class CharacterScript : MonoBehaviour
         Vector2 movement;
         movement.y = rigidBody.velocity.y;
 
-        if(Input.GetKey(KeyCode.X) == true){
-            intWObj = true; 
-            speed = 2.0f;   
-            movement.x = speed;
-            rigidBody.velocity = movement; 
-        }
-        else if (Input.GetKeyUp(KeyCode.X) == true){
-            intWObj = false;
-            speed = 3.0f;
-            movement.x = speed;
-            rigidBody.velocity = movement; 
+        // Only push if moving foward
+        if(Input.GetKey(KeyCode.RightArrow) == true){
+            if(Input.GetKey(KeyCode.X) == true){
+                intWObj = true; 
+                speed = 2.0f;   
+                movement.x = speed;
+                rigidBody.velocity = movement; 
+                currentAction = "Pushing";
+            }
+            else if (Input.GetKeyUp(KeyCode.X) == true){
+                intWObj = false;
+                speed = 3.0f;
+                movement.x = speed;
+                rigidBody.velocity = movement; 
+         }
+
         }
 
+        else{
+            intWObj = false;
+        }
+        
         
 
     }
@@ -174,15 +201,15 @@ public class CharacterScript : MonoBehaviour
         movement.y = rigidBody.velocity.y;
         
 
-        if (Input.GetKey(KeyCode.LeftShift)){
+        if (Input.GetKey(KeyCode.LeftShift) && currentAction != "Pushing"){
              if(Input.GetKey(KeyCode.RightArrow) == true){
-                speed = 6.5f;
+                speed = 5.0f;
                 movement.x = speed;
                 currentAction = "Running Foward";   
             }
 
             else if (Input.GetKey(KeyCode.LeftArrow) == true){
-                speed = 6.5f;
+                speed = 5.0f;
                 movement.x = -speed;
                 currentAction = "Running Left";    
             
