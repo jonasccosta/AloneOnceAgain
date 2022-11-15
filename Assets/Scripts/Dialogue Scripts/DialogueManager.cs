@@ -9,6 +9,7 @@ public class DialogueManager : MonoBehaviour
     public Canvas dialogueCanvas;
     public GameObject character;
     public GameObject dialogueBorder;
+    public bool endedDialogue;
 
     private DialogueTree dialogue;
     private Sentence currentSentence = null;
@@ -16,6 +17,7 @@ public class DialogueManager : MonoBehaviour
     // Disables player movement when starting dialogue
     public void StartDialogue(DialogueTree dialogueTree){
         dialogue = dialogueTree;
+        endedDialogue = false;
         currentSentence = dialogue.startingSentence;
         dialogueCanvas.enabled = true;
         dialogueBorder.SetActive(true);
@@ -51,6 +53,7 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue(){
         dialogueUIText.text = "";
+        endedDialogue = true;
         dialogueBorder.SetActive(false);
         character.GetComponent<CharacterScript>().enabled = true;
     }
