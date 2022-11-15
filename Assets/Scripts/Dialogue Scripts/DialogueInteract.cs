@@ -10,6 +10,7 @@ public class DialogueInteract : MonoBehaviour
     {
         // Player presses X to advance on-screen dialogue
         if(Input.GetKeyDown(KeyCode.X)){
+            dialogueManager.dialogueUIText.text = "";
             dialogueManager.AdvanceSentence();
         }
     }

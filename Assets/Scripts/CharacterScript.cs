@@ -41,14 +41,11 @@ public class CharacterScript : MonoBehaviour
         {
             // If the characters collides with the floor, then set isGrounded to true
             isGrounded = true;
-            
         }
          
         if (collision.gameObject.tag == "Obstacle"){
             CollisionWithObstacle(collision);
          }
-
-        
     }
 
     void CollisionWithObstacle(Collision2D collision){
