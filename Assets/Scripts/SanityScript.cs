@@ -24,7 +24,6 @@ public class SanityScript : MonoBehaviour
         lostSanity += 0.5f;
         sanityMeter.value = lostSanity;
         if(lostSanity >= sanityMeter.maxValue){
-          print("AAAAAAAA");
           SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
       }

@@ -72,8 +72,26 @@ public class CharacterScript : MonoBehaviour
 
     }
 
+    // Flips a sprite if it is moving from right to left
+    void FlipSprite(){
+        Vector2 scale = transform.localScale;
+        if( rigidBody.velocity.x < 0.0f && scale.x > 0.01f){
+            scale.x *= -1.0f;
+            transform.localScale = scale;
+        }
+
+        else if (rigidBody.velocity.x > 0.0f && scale.x < 0.01f){
+            scale.x *= -1.0f;
+            transform.localScale = scale;
+        }
+        
+    }
+
     // Update the Character Animation based on the current action the player is doing
     void Animate(){
+
+        // Check if it the sprite needs to be fliped
+        FlipSprite();
         if (!isGrounded){
              anim.Play("Jumping Animation");
 
@@ -83,46 +101,23 @@ public class CharacterScript : MonoBehaviour
             }
 
             else{
-                anim.speed = 1.0f;
+                anim.speed = 0.75f;
             }
         }
 
-        else if (Input.GetKey(KeyCode.RightArrow) == false && Input.GetKey(KeyCode.LeftArrow) == false && Input.GetKey(KeyCode.UpArrow) == false && Input.GetKey(KeyCode.X) == false && Input.GetKey(KeyCode.LeftShift) == false)
-        {
-            currentAction = "Idle";
-            anim.Play("Idle Animation");;
-        }
-
-        else if (isGrounded){
-
-            if (currentAction == "Pushing"){
-                anim.Play("Pushing Animation");
-            }
-
-            else if (currentAction == "Walking Foward"){
-                anim.Play("Walking Foward Animation");
-            }
-
-            else if (currentAction == "Running Foward"){
-                anim.Play("Running Foward Animation");
-            }
-
-            else if (currentAction == "Running Left"){
-                anim.Play("Running Left Animation");
-            }
-
-            else if (currentAction == "Walking To Left"){
-                anim.Play("Walking To Left Animation");
-            }
+        else{
+            anim.Play(currentAction + " Animation");
 
         }
 
 
     }
 
+    // Set current action to idle if none of the game controllers are being pressed
     void Idle(){
         if (Input.GetKey(KeyCode.RightArrow) == false && Input.GetKey(KeyCode.LeftArrow) == false && Input.GetKey(KeyCode.UpArrow) == false && Input.GetKey(KeyCode.X) == false && Input.GetKey(KeyCode.LeftShift) == false){
             currentAction = "Idle";
+            intWObj = false;
             speed = 3.0f;
         }
     }
@@ -139,7 +134,7 @@ public class CharacterScript : MonoBehaviour
 
         else if (Input.GetKey(KeyCode.LeftArrow) == true){
             movement.x = -speed;
-            currentAction = "Walking To Left";    
+            currentAction = "Walking Foward";    
         
         }
 
@@ -156,9 +151,18 @@ public class CharacterScript : MonoBehaviour
     // Allow jumps only if the character is in the ground and is not interacting with an object (pushing/pulling)
     void Jump(){
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded && !intWObj){
-            rigidBody.AddForce(new Vector2(0, 1.5f*speed), ForceMode2D.Impulse);
+            if(speed > 3.0f){
+                 rigidBody.AddForce(new Vector2(0, 1.5f*speed), ForceMode2D.Impulse);
+            }
+
+            else{
+                rigidBody.AddForce(new Vector2(0, 2.5f*speed), ForceMode2D.Impulse);
+            }
+           
             isGrounded = false;
             currentAction = "Jumping";
+
+
         }
     }
 
@@ -166,7 +170,7 @@ public class CharacterScript : MonoBehaviour
         Vector2 movement;
         movement.y = rigidBody.velocity.y;
 
-        // Only push if moving foward
+        // Push if moving foward
         if(Input.GetKey(KeyCode.RightArrow) == true){
             if(Input.GetKey(KeyCode.X) == true){
                 intWObj = true; 
@@ -180,12 +184,32 @@ public class CharacterScript : MonoBehaviour
                 speed = 3.0f;
                 movement.x = speed;
                 rigidBody.velocity = movement; 
+                currentAction = "Pushing";
+         }
+
+        }
+
+        // Push if moving to the left
+        else if (Input.GetKey(KeyCode.LeftArrow) == true){
+            if(Input.GetKey(KeyCode.X) == true){
+                intWObj = true; 
+                speed = -2.0f;   
+                movement.x = speed;
+                rigidBody.velocity = movement; 
+                currentAction = "Pushing";
+            }
+            else if (Input.GetKeyUp(KeyCode.X) == true){
+                intWObj = false;
+                speed = 3.0f;
+                movement.x = speed;
+                rigidBody.velocity = movement; 
+                currentAction = "Pushing";
          }
 
         }
 
         else{
-            intWObj = false;
+             intWObj = false;
         }
         
         
@@ -208,7 +232,7 @@ public class CharacterScript : MonoBehaviour
             else if (Input.GetKey(KeyCode.LeftArrow) == true){
                 speed = 5.0f;
                 movement.x = -speed;
-                currentAction = "Running Left";    
+                currentAction = "Running Foward";    
             
             }
 
@@ -217,10 +241,14 @@ public class CharacterScript : MonoBehaviour
                 movement.x = 0;    
             }
 
-
             rigidBody.velocity = movement; 
-            
          
+         }
+
+         else if (Input.GetKeyUp(KeyCode.LeftShift)){
+            speed = 3.0f;
+            movement.x = 0;    
+            rigidBody.velocity = movement; 
          }
 
 

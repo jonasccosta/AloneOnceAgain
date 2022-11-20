@@ -22,6 +22,13 @@ public class PushPullScript : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.X)){
             pushPull = false;
         }
+
+        for (var i = 0; i < transform.childCount; ++i) {
+            if( transform.GetChild(i).tag == "MovableObject" && !pushPull){
+                transform.GetChild(i).SetParent(null);
+            }
+            
+        }
     }
 
     // When the character enters a trigger collision with an object that is tagged as 
