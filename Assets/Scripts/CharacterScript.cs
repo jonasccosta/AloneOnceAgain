@@ -41,7 +41,7 @@ public class CharacterScript : MonoBehaviour
     {
         Rigidbody2D objectBody = collision.rigidbody;
 
-        if (collision.gameObject.tag == "Floor")
+        if (collision.gameObject.tag == "Floor" || (isGrounded == false && collision.gameObject.tag == "MovableObject"))
         {
             // If the characters collides with the floor, then set isGrounded to true
             isGrounded = true;
