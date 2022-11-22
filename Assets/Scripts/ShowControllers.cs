@@ -6,7 +6,7 @@ public class ShowControllers : MonoBehaviour
 {
     
     public GameObject controllerImage;
-    private static int count = 0; // count is used to not show controolers more than once
+    private static int count = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -15,9 +15,7 @@ public class ShowControllers : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other)
-    {   // Function that shows game controllers if player is standing on
-        //designated trigger and count is smaller than one
-
+    {
         if (other.tag == "Player" && count < 1)
         {
             Debug.Log("siuuuuuuuuuuuuuuuuu");
@@ -28,7 +26,7 @@ public class ShowControllers : MonoBehaviour
     }
 
     void OnTriggerExit2D(Collider2D other)
-    {   //functions that hides the controllers images if player exits the trigger
+    {
         Debug.Log("me saliiiiiiii");
         controllerImage.SetActive(false);
         count ++;
