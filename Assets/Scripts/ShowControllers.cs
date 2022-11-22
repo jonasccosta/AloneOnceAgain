@@ -6,6 +6,7 @@ public class ShowControllers : MonoBehaviour
 {
     
     public GameObject controllerImage;
+    private static int count = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +16,7 @@ public class ShowControllers : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && count < 1)
         {
             Debug.Log("siuuuuuuuuuuuuuuuuu");
 
@@ -28,6 +29,7 @@ public class ShowControllers : MonoBehaviour
     {
         Debug.Log("me saliiiiiiii");
         controllerImage.SetActive(false);
+        count ++;
 
     }
 
