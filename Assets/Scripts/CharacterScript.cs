@@ -10,6 +10,9 @@ public class CharacterScript : MonoBehaviour
     bool isGrounded = true;
     bool intWObj = false;
     public Animator anim;
+    public bool dead = false;
+    private SanityScript sanityScript;
+    
 
     // Stores current action of the character or idle if there is no action
     public string currentAction = "Idle";
@@ -19,6 +22,7 @@ public class CharacterScript : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponentInChildren(typeof(Animator)) as Animator;
+        sanityScript = gameObject.GetComponent<SanityScript>();
     }
 
     // Update is called once per frame
@@ -37,7 +41,7 @@ public class CharacterScript : MonoBehaviour
     {
         Rigidbody2D objectBody = collision.rigidbody;
 
-        if (collision.gameObject.tag == "Floor" )
+        if (collision.gameObject.tag == "Floor")
         {
             // If the characters collides with the floor, then set isGrounded to true
             isGrounded = true;
@@ -61,7 +65,8 @@ public class CharacterScript : MonoBehaviour
 
         // If the character collides with an obstacle without the dumpster, restart its position
         if(!attached) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //Death();
+            dead = true;
         }
 
         // If the characters collides with an obstacle with the dumpster, remove the obstacle
@@ -75,12 +80,12 @@ public class CharacterScript : MonoBehaviour
     // Flips a sprite if it is moving from right to left
     void FlipSprite(){
         Vector2 scale = transform.localScale;
-        if( rigidBody.velocity.x < 0.0f && scale.x > 0.01f && !intWObj){
+        if( rigidBody.velocity.x < 0.0f && scale.x > 0.01f){
             scale.x *= -1.0f;
             transform.localScale = scale;
         }
 
-        else if (rigidBody.velocity.x > 0.0f && scale.x < 0.01f && !intWObj){
+        else if (rigidBody.velocity.x > 0.0f && scale.x < 0.01f){
             scale.x *= -1.0f;
             transform.localScale = scale;
         }
@@ -92,7 +97,15 @@ public class CharacterScript : MonoBehaviour
 
         // Check if it the sprite needs to be fliped
         FlipSprite();
-        if (!isGrounded){
+
+        if (dead || sanityScript.dead)
+         {
+            anim.Play("Death Animation");
+             StartCoroutine("Dead");
+         }
+
+
+        else if (!isGrounded){
              anim.Play("Jumping Animation");
 
              // If running and jumping, decrease the animation speed
@@ -184,7 +197,7 @@ public class CharacterScript : MonoBehaviour
                 speed = 3.0f;
                 movement.x = speed;
                 rigidBody.velocity = movement; 
-                currentAction = "Pulling";
+                currentAction = "Pushing";
          }
 
         }
@@ -203,7 +216,7 @@ public class CharacterScript : MonoBehaviour
                 speed = 3.0f;
                 movement.x = speed;
                 rigidBody.velocity = movement; 
-                currentAction = "Pulling";
+                currentAction = "Pushing";
          }
 
         }
@@ -257,7 +270,18 @@ public class CharacterScript : MonoBehaviour
     // Restart the scene if Violet Drops
     void GameOver(){
         if (rigidBody.position.y < -5.0f){
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            dead = true;
         }
     }
+ 
+    IEnumerator Dead()
+     {
+         yield return new WaitForSeconds(1.72f);
+         
+         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+     }
+
+     
+
 }
+
