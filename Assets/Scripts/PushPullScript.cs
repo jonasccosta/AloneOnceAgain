@@ -6,6 +6,7 @@ public class PushPullScript : MonoBehaviour
 {
     Rigidbody2D playerBody;
     bool pushPull;
+    public GameObject parent;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +47,7 @@ public class PushPullScript : MonoBehaviour
     public void OnTriggerExit2D(Collider2D obj)
     {
         if (obj.tag == "MovableObject" && !pushPull){
-            obj.transform.SetParent(null);
+            obj.transform.SetParent(parent.GetComponent<Rigidbody2D>().transform);
             print("detached children"); // for debugging
         }
     }
