@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: "Why is my sister\u2019s art project here?"
   nextSentence: {fileID: 11400000, guid: 5008c5f5603daa543bb0338ba50ac019, type: 2}
+  attachedFacePortrait: VioletNeutral

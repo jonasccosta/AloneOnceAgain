@@ -15,3 +15,4 @@ MonoBehaviour:
   text: I thought everything related to her vanished last year. Nothing from back
     then should exist.
   nextSentence: {fileID: 11400000, guid: 928d2c2130cb7eb4bb4a68e1674c1c87, type: 2}
+  attachedFacePortrait: VioletNeutral
