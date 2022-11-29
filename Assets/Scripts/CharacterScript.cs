@@ -206,7 +206,7 @@ public class CharacterScript : MonoBehaviour
         else if (Input.GetKey(KeyCode.LeftArrow) == true){
             if(Input.GetKey(KeyCode.X) == true){
                 intWObj = true; 
-                speed = -2.0f;   
+                speed = 2.0f;   
                 movement.x = speed;
                 rigidBody.velocity = movement; 
                 currentAction = "Pushing";
