@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: "I need to get through. I\u2019ll apologize to Pearl if I ever see her again."
   nextSentence: {fileID: 0}
+  attachedFacePortrait: VioletNeutral
