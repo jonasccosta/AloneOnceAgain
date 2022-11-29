@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: So why?
   nextSentence: {fileID: 11400000, guid: 3c4e0d306c0e944429158080feb004ef, type: 2}
+  attachedFacePortrait: VioletNeutral
