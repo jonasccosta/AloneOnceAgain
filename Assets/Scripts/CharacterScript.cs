@@ -12,6 +12,9 @@ public class CharacterScript : MonoBehaviour
     public Animator anim;
     public bool dead = false;
     private SanityScript sanityScript;
+    public GameObject transitionCanvas;
+
+    private TransitionScript transitionScript;
     
 
     // Stores current action of the character or idle if there is no action
@@ -20,6 +23,8 @@ public class CharacterScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transitionScript = transitionCanvas.GetComponent<TransitionScript>();
+        StartCoroutine(transitionScript.FadeOutBlackSquare());
         rigidBody = GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponentInChildren(typeof(Animator)) as Animator;
         sanityScript = gameObject.GetComponent<SanityScript>();
@@ -276,6 +281,7 @@ public class CharacterScript : MonoBehaviour
  
     IEnumerator Dead()
      {
+        StartCoroutine(transitionScript.FadeInBlackOutSquare());
          yield return new WaitForSeconds(1.72f);
          
          SceneManager.LoadScene(SceneManager.GetActiveScene().name);
