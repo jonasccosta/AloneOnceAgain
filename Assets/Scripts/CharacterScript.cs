@@ -85,12 +85,12 @@ public class CharacterScript : MonoBehaviour
     // Flips a sprite if it is moving from right to left
     void FlipSprite(){
         Vector2 scale = transform.localScale;
-        if( rigidBody.velocity.x < 0.0f && scale.x > 0.01f){
+        if( rigidBody.velocity.x < 0.0f && scale.x > 0.01f && !intWObj){
             scale.x *= -1.0f;
             transform.localScale = scale;
         }
 
-        else if (rigidBody.velocity.x > 0.0f && scale.x < 0.01f){
+        else if (rigidBody.velocity.x > 0.0f && scale.x < 0.01f && !intWObj){
             scale.x *= -1.0f;
             transform.localScale = scale;
         }
