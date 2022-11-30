@@ -18,19 +18,14 @@ public class ShowControllers : MonoBehaviour
     {
         if (other.tag == "Player" && count < 1)
         {
-            Debug.Log("siuuuuuuuuuuuuuuuuu");
-
-            controllerImage.SetActive(true);
-            
+            controllerImage.SetActive(true);    
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("me saliiiiiiii");
         controllerImage.SetActive(false);
-        count ++;
-
+        count++;
     }
 
 
