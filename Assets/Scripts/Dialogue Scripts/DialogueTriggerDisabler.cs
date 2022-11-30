@@ -10,7 +10,6 @@ public class DialogueTriggerDisabler : MonoBehaviour
     public void disableTrigger()
     {
         if (dialogueManager.endedDialogue == true){
-            print("Disabling!");
             trigger.SetActive(false);
         }
     }
