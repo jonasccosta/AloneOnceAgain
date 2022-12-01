@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class CharacterScript : MonoBehaviour
 {
@@ -13,8 +14,10 @@ public class CharacterScript : MonoBehaviour
     public bool dead = false;
     private SanityScript sanityScript;
     public GameObject transitionCanvas;
-
     private TransitionScript transitionScript;
+    public GameObject gameOverScreen;
+    string reason = "";
+    public GameObject reasonForDying;
     
 
     // Stores current action of the character or idle if there is no action
@@ -28,6 +31,7 @@ public class CharacterScript : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponentInChildren(typeof(Animator)) as Animator;
         sanityScript = gameObject.GetComponent<SanityScript>();
+        gameOverScreen.SetActive(false);     
     }
 
     // Update is called once per frame
@@ -72,7 +76,8 @@ public class CharacterScript : MonoBehaviour
         if(!attached) {
             //Death();
             dead = true;
-        }
+            reason = "debri";            
+        } 
 
         // If the characters collides with an obstacle with the dumpster, remove the obstacle
         else {
@@ -106,7 +111,11 @@ public class CharacterScript : MonoBehaviour
         if (dead || sanityScript.dead)
          {
             anim.Play("Death Animation");
-             StartCoroutine("Dead");
+            StartCoroutine("GameOverScreen");
+            StartCoroutine("Dead");
+            if(sanityScript.dead){
+                reason = "sanityDeath";
+            }
          }
 
 
@@ -276,17 +285,40 @@ public class CharacterScript : MonoBehaviour
     void GameOver(){
         if (rigidBody.position.y < -5.0f){
             dead = true;
+            reason = "pit";
         }
     }
  
     IEnumerator Dead()
      {
         StartCoroutine(transitionScript.FadeInBlackOutSquare());
-         yield return new WaitForSeconds(1.72f);
-         
-         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        yield return new WaitForSeconds(1.72f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
      }
 
+    IEnumerator GameOverScreen()
+    // Transition Game Over screen for 5 seconds
+    {
+        ReasonDying(reason);
+        gameOverScreen.SetActive(true);
+        yield return new WaitForSeconds(5.0f);
+        gameOverScreen.SetActive(false);
+    }
+
+    void ReasonDying(string reason)
+    // Changes reason for dying depending on event
+    {   
+        if (reason == "debri"){
+            reason = "You hit debri.";
+        }
+        else if (reason == "pit"){
+            reason = "You fell into a pit.";
+        }
+        else if (reason == "debris"){
+            reason = "Your sanity reached 0.";
+        }
+        reasonForDying.GetComponent<TMP_Text>().text = reason;
+    }
      
 
 }
