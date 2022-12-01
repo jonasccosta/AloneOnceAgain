@@ -76,7 +76,7 @@ public class CharacterScript : MonoBehaviour
         if(!attached) {
             //Death();
             dead = true;
-            reason = "debri";            
+            reason = "debris";
         } 
 
         // If the characters collides with an obstacle with the dumpster, remove the obstacle
@@ -308,13 +308,13 @@ public class CharacterScript : MonoBehaviour
     void ReasonDying(string reason)
     // Changes reason for dying depending on event
     {   
-        if (reason == "debri"){
-            reason = "You hit debri.";
+        if (reason == "debris"){
+            reason = "You hit debris.";
         }
         else if (reason == "pit"){
             reason = "You fell into a pit.";
         }
-        else if (reason == "debris"){
+        else if (reason == "sanityDeath"){
             reason = "Your sanity reached 0.";
         }
         reasonForDying.GetComponent<TMP_Text>().text = reason;
