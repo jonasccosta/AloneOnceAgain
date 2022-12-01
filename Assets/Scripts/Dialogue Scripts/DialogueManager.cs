@@ -23,6 +23,7 @@ public class DialogueManager : MonoBehaviour
     Sprite VIOLETHAPPY;
     Sprite VIOLETSAD;
     Sprite VIOLETAFRAID;
+    Sprite OTHER;
 
     void Start(){
         VIOLETNEUTRAL =  Resources.Load <Sprite>("CharacterPortraits/Portrait_Neutral");
@@ -30,6 +31,7 @@ public class DialogueManager : MonoBehaviour
         VIOLETHAPPY = Resources.Load <Sprite>("CharacterPortraits/Portrait_Happy");
         VIOLETSAD = Resources.Load <Sprite>("CharacterPortraits/Portrait_Sad");
         VIOLETAFRAID = Resources.Load <Sprite>("CharacterPortraits/Portrait_Afraid");
+        OTHER = Resources.Load <Sprite>("CharacterPortraits/question-mark");
     }
 
     // Disables player movement when starting dialogue
@@ -89,7 +91,7 @@ public class DialogueManager : MonoBehaviour
             characterPortrait.GetComponent<Image>().sprite = VIOLETAFRAID;
         }
         else {
-            characterPortrait.GetComponent<Image>().sprite = null;
+            characterPortrait.GetComponent<Image>().sprite = OTHER;
         }
     }
 
