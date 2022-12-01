@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class SanityScript : MonoBehaviour
 {
     public float lostSanity = 0.0f;
-    public float maxSanity = 60.0f;
+    public float maxSanity = 120.0f;
     public Slider sanityMeter;
     public bool dead = false;
     public Image sanityImage;
