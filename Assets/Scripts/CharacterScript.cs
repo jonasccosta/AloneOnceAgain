@@ -74,14 +74,12 @@ public class CharacterScript : MonoBehaviour
 
         // If the character collides with an obstacle without the dumpster, restart its position
         if(!attached) {
-            //Death();
             dead = true;
             reason = "debris";
         } 
 
         // If the characters collides with an obstacle with the dumpster, remove the obstacle
         else {
-            
            Destroy(collision.gameObject);
         }
 
@@ -238,6 +236,8 @@ public class CharacterScript : MonoBehaviour
         else{
              intWObj = false;
         }
+
+        
         
         
 
