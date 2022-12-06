@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
   m_Name: Dumpster1
   m_EditorClassIdentifier: 
-  text: "What the?! How? What\u2019s Pearl\u2019s sculpture doing here?"
+  text: "What the?! How? What\u2019s my sister Pearl\u2019s sculpture doing here?"
   nextSentence: {fileID: 11400000, guid: e8240a39327f37e4d97f7c58ad40bd3e, type: 2}
   attachedFacePortrait: VioletAngry

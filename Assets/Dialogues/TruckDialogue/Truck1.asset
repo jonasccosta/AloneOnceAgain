@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
   m_Name: Truck1
   m_EditorClassIdentifier: 
-  text: Oh honey, not now. I'm tired, just go study.
+  text: This is dad's old work truck that Pearl practiced driving in. I was sure
+    it vanished months ago though.
   nextSentence: {fileID: 11400000, guid: 9a27416dae80ab14885d4a48306b7f43, type: 2}
-  attachedFacePortrait: 
+  attachedFacePortrait: VioletNeutral

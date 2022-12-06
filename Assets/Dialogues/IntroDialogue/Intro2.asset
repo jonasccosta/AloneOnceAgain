@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
   m_Name: Intro2
   m_EditorClassIdentifier: 
-  text: What's going on? The sky...
+  text: What's going on? The sky... the neighborhood!
   nextSentence: {fileID: 11400000, guid: d31cc684d55f0fd4aba1047c886e2b27, type: 2}
   attachedFacePortrait: VioletSad

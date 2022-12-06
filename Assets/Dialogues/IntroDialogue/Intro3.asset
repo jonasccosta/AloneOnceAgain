@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
   m_Name: Intro3
   m_EditorClassIdentifier: 
-  text: What happened to the neighborhood?
+  text: Did the apocalypse begin while I was praying?
   nextSentence: {fileID: 11400000, guid: f37a6bf0082adfc40901eddb7eec5399, type: 2}
   attachedFacePortrait: VioletAfraid

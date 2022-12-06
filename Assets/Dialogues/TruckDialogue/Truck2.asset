@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
   m_Name: Truck2
   m_EditorClassIdentifier: 
-  text: You need to get ready for your exam tomorrow, colleges don't like poor grades.
+  text: Why is it here? To remind me of the past?
   nextSentence: {fileID: 11400000, guid: 601428771683bcc4892c3bc4d439460a, type: 2}
-  attachedFacePortrait: 
+  attachedFacePortrait: VioletNeutral

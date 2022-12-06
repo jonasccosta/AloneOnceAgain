@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
   m_Name: Truck6
   m_EditorClassIdentifier: 
-  text: text
-  nextSentence: {fileID: 0}
-  attachedFacePortrait: 
+  text: You can always practice driving later.
+  nextSentence: {fileID: 11400000, guid: 6f5676b3c0709984a81b89e567d1df41, type: 2}
+  attachedFacePortrait: Father
