@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
-  m_Name: Truck6
+  m_Name: Truck8
   m_EditorClassIdentifier: 
-  text: text
+  text: But I still wasn't allowed to practice driving...
   nextSentence: {fileID: 0}
-  attachedFacePortrait: 
+  attachedFacePortrait: VioletAngry

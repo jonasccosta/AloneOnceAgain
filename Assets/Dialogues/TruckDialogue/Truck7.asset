@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
-  m_Name: Truck6
+  m_Name: Truck7
   m_EditorClassIdentifier: 
-  text: text
-  nextSentence: {fileID: 0}
-  attachedFacePortrait: 
+  text: Pearl was the superstar She got all the friends, all the attention. "Be like
+    her", dad said.
+  nextSentence: {fileID: 11400000, guid: 363d7f74f50c35a40af6fe4c308065e7, type: 2}
+  attachedFacePortrait: VioletAngry
