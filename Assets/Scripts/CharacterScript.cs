@@ -18,6 +18,8 @@ public class CharacterScript : MonoBehaviour
     public GameObject gameOverScreen;
     string reason = "";
     public GameObject reasonForDying;
+
+    bool skateboarding = false;
     
 
     // Stores current action of the character or idle if there is no action
@@ -50,6 +52,14 @@ public class CharacterScript : MonoBehaviour
     {
         Rigidbody2D objectBody = collision.rigidbody;
 
+        if (collision.gameObject.name == "Skateboard"){
+            skateboarding = true;
+        }
+
+        else{
+            skateboarding = false;
+        }
+
         if (collision.gameObject.tag == "Floor" || (isGrounded == false && collision.gameObject.tag == "MovableObject"))
         {
             // If the characters collides with the floor, then set isGrounded to true
@@ -59,6 +69,8 @@ public class CharacterScript : MonoBehaviour
         if (collision.gameObject.tag == "Obstacle"){
             CollisionWithObstacle(collision);
          }
+
+        
     }
 
     void CollisionWithObstacle(Collision2D collision){
@@ -251,19 +263,17 @@ public class CharacterScript : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift) && currentAction != "Pushing"){
              if(Input.GetKey(KeyCode.RightArrow) == true){
-                speed = 5.0f;
-                movement.x = speed;
+                movement.x = CollisionWithSkateBoard();
                 currentAction = "Running Foward";   
             }
 
             else if (Input.GetKey(KeyCode.LeftArrow) == true){
-                speed = 5.0f;
-                movement.x = -speed;
+                movement.x = -CollisionWithSkateBoard();
                 currentAction = "Running Foward";    
             
             }
 
-            else {
+            else{
                 speed = 3.0f;
                 movement.x = 0;    
             }
@@ -318,6 +328,22 @@ public class CharacterScript : MonoBehaviour
             reason = "Your sanity reached 0.";
         }
         reasonForDying.GetComponent<TMP_Text>().text = reason;
+    }
+
+
+    float CollisionWithSkateBoard(){
+        if (skateboarding){
+            return 7.0f;
+        }
+
+        return 5.0f;
+        
+        // Vector2 movement;
+        // movement.y = rigidBody.velocity.y;
+        // movement.x = speed;
+        // rigidBody.velocity = movement; 
+        // currentAction = "Running Foward";
+
     }
      
 
