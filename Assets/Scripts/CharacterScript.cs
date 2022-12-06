@@ -338,11 +338,6 @@ public class CharacterScript : MonoBehaviour
 
         return 5.0f;
         
-        // Vector2 movement;
-        // movement.y = rigidBody.velocity.y;
-        // movement.x = speed;
-        // rigidBody.velocity = movement; 
-        // currentAction = "Running Foward";
 
     }
      
