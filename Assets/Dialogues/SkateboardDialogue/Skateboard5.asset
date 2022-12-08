@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
   m_Name: Skateboard5
   m_EditorClassIdentifier: 
-  text: text
-  nextSentence: {fileID: 0}
-  attachedFacePortrait: 
+  text: Just go home and play with your stupid video games, or watch your fucking
+    anime. That's all you ever talk about anyways.
+  nextSentence: {fileID: 11400000, guid: 4db8d4eb631d4cd4c9d7e821646a2179, type: 2}
+  attachedFacePortrait: Friends
+  pastDialogue: 1
