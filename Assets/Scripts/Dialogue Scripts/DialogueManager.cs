@@ -23,7 +23,8 @@ public class DialogueManager : MonoBehaviour
     Sprite VIOLETHAPPY;
     Sprite VIOLETSAD;
     Sprite VIOLETAFRAID;
-    Sprite OTHER;
+    Sprite FATHER;
+    Sprite FRIENDS;
 
     void Start(){
         VIOLETNEUTRAL =  Resources.Load <Sprite>("CharacterPortraits/Portrait_Neutral");
@@ -31,7 +32,8 @@ public class DialogueManager : MonoBehaviour
         VIOLETHAPPY = Resources.Load <Sprite>("CharacterPortraits/Portrait_Happy");
         VIOLETSAD = Resources.Load <Sprite>("CharacterPortraits/Portrait_Sad");
         VIOLETAFRAID = Resources.Load <Sprite>("CharacterPortraits/Portrait_Afraid");
-        OTHER = Resources.Load <Sprite>("CharacterPortraits/question-mark");
+        FATHER = Resources.Load <Sprite>("CharacterPortraits/Portrait_Father");
+        FRIENDS = Resources.Load <Sprite>("CharacterPortraits/Portrait_Friends");
     }
 
     // Disables player movement when starting dialogue
@@ -59,6 +61,12 @@ public class DialogueManager : MonoBehaviour
             return;
         }
         string sentence = currentSentence.text;
+        if (currentSentence.pastDialogue == true){
+            dialogueUIText.fontStyle = (FontStyles) FontStyle.Italic;
+        }
+        else{
+            dialogueUIText.fontStyle = (FontStyles) FontStyle.Normal;
+        }
         dialogueUIText.text = sentence;
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
@@ -90,8 +98,8 @@ public class DialogueManager : MonoBehaviour
         else if (currentFacePortrait == "VioletAfraid"){
             characterPortrait.GetComponent<Image>().sprite = VIOLETAFRAID;
         }
-        else {
-            characterPortrait.GetComponent<Image>().sprite = OTHER;
+        else if (currentFacePortrait == "Friends"){
+            characterPortrait.GetComponent<Image>().sprite = FRIENDS;
         }
     }
 
