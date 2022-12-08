@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
   m_Name: Dumpster4
   m_EditorClassIdentifier: 
-  text: "Why is my sister\u2019s art project here?"
+  text: In a dumpster of all places!
   nextSentence: {fileID: 11400000, guid: 5008c5f5603daa543bb0338ba50ac019, type: 2}
-  attachedFacePortrait: VioletNeutral
+  attachedFacePortrait: VioletAngry

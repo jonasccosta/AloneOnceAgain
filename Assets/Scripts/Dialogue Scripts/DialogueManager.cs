@@ -98,6 +98,9 @@ public class DialogueManager : MonoBehaviour
         else if (currentFacePortrait == "VioletAfraid"){
             characterPortrait.GetComponent<Image>().sprite = VIOLETAFRAID;
         }
+        else if (currentFacePortrait == "Father"){
+            characterPortrait.GetComponent<Image>().sprite = FATHER;
+        }
         else if (currentFacePortrait == "Friends"){
             characterPortrait.GetComponent<Image>().sprite = FRIENDS;
         }

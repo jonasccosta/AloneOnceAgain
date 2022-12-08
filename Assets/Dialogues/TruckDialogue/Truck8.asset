@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
-  m_Name: Truck5
+  m_Name: Truck8
   m_EditorClassIdentifier: 
-  text: You want to practice driving like Pearl? Nonsense, remember that Pearl passes
-    her tests because she studies, so be like her.
-  nextSentence: {fileID: 11400000, guid: 2a4d7a35e37c04e41a3d9d0671067eed, type: 2}
-  attachedFacePortrait: Father
+  text: But I still wasn't allowed to practice driving...
+  nextSentence: {fileID: 0}
+  attachedFacePortrait: VioletAngry

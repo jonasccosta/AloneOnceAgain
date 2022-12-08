@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
   m_Name: Dumpster6
   m_EditorClassIdentifier: 
-  text: "I need to get through. I\u2019ll apologize to Pearl if I ever see her again."
+  text: I need to get through this debris to go home. The dumpster should be heavy
+    enough to break through it if I push it.
   nextSentence: {fileID: 0}
   attachedFacePortrait: VioletNeutral

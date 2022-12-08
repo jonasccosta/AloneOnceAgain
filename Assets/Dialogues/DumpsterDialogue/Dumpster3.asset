@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
   m_Name: Dumpster3
   m_EditorClassIdentifier: 
-  text: So why?
+  text: So why is her art project here?
   nextSentence: {fileID: 11400000, guid: 3c4e0d306c0e944429158080feb004ef, type: 2}
   attachedFacePortrait: VioletNeutral

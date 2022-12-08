@@ -32,7 +32,7 @@ public class SanityScript : MonoBehaviour
         sanityMeter.value = lostSanity;
 
         // Change hue of the sanity object
-        objectColor = Color.HSVToRGB(hue*(1-lostSanity/sanityMeter.maxValue), saturation, value);
+        objectColor = Color.HSVToRGB(hue*(1-(lostSanity)/sanityMeter.maxValue), saturation, value);
         sanityImage.color = objectColor;
 
         // If sanity is greater than or equal to the maximum value of the slider, then game over

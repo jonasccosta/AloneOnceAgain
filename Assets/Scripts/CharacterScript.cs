@@ -18,6 +18,8 @@ public class CharacterScript : MonoBehaviour
     public GameObject gameOverScreen;
     string reason = "";
     public GameObject reasonForDying;
+
+    bool skateboarding = false;
     
 
     // Stores current action of the character or idle if there is no action
@@ -50,6 +52,14 @@ public class CharacterScript : MonoBehaviour
     {
         Rigidbody2D objectBody = collision.rigidbody;
 
+        if (collision.gameObject.name == "Skateboard"){
+            skateboarding = true;
+        }
+
+        else{
+            skateboarding = false;
+        }
+
         if (collision.gameObject.tag == "Floor" || (isGrounded == false && collision.gameObject.tag == "MovableObject"))
         {
             // If the characters collides with the floor, then set isGrounded to true
@@ -59,6 +69,8 @@ public class CharacterScript : MonoBehaviour
         if (collision.gameObject.tag == "Obstacle"){
             CollisionWithObstacle(collision);
          }
+
+        
     }
 
     void CollisionWithObstacle(Collision2D collision){
@@ -74,14 +86,12 @@ public class CharacterScript : MonoBehaviour
 
         // If the character collides with an obstacle without the dumpster, restart its position
         if(!attached) {
-            //Death();
             dead = true;
-            reason = "debri";            
+            reason = "debris";
         } 
 
         // If the characters collides with an obstacle with the dumpster, remove the obstacle
         else {
-            
            Destroy(collision.gameObject);
         }
 
@@ -238,6 +248,8 @@ public class CharacterScript : MonoBehaviour
         else{
              intWObj = false;
         }
+
+        
         
         
 
@@ -251,19 +263,17 @@ public class CharacterScript : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift) && currentAction != "Pushing"){
              if(Input.GetKey(KeyCode.RightArrow) == true){
-                speed = 5.0f;
-                movement.x = speed;
+                movement.x = CollisionWithSkateBoard();
                 currentAction = "Running Foward";   
             }
 
             else if (Input.GetKey(KeyCode.LeftArrow) == true){
-                speed = 5.0f;
-                movement.x = -speed;
+                movement.x = -CollisionWithSkateBoard();
                 currentAction = "Running Foward";    
             
             }
 
-            else {
+            else{
                 speed = 3.0f;
                 movement.x = 0;    
             }
@@ -308,16 +318,27 @@ public class CharacterScript : MonoBehaviour
     void ReasonDying(string reason)
     // Changes reason for dying depending on event
     {   
-        if (reason == "debri"){
-            reason = "You hit debri.";
+        if (reason == "debris"){
+            reason = "You hit debris.";
         }
         else if (reason == "pit"){
             reason = "You fell into a pit.";
         }
-        else if (reason == "debris"){
+        else if (reason == "sanityDeath"){
             reason = "Your sanity reached 0.";
         }
         reasonForDying.GetComponent<TMP_Text>().text = reason;
+    }
+
+
+    float CollisionWithSkateBoard(){
+        if (skateboarding){
+            return 7.0f;
+        }
+
+        return 5.0f;
+        
+
     }
      
 

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
   m_Name: Intro5
   m_EditorClassIdentifier: 
-  text: I... I need to go home!
-  nextSentence: {fileID: 0}
+  text: I... I need to check on them! I need to go home!
+  nextSentence: {fileID: 11400000, guid: 891da535ccda4884abc5a44a67e43430, type: 2}
   attachedFacePortrait: VioletAfraid
