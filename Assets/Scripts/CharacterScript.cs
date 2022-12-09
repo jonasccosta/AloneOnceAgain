@@ -18,7 +18,12 @@ public class CharacterScript : MonoBehaviour
     public GameObject gameOverScreen;
     string reason = "";
     public GameObject reasonForDying;
+    public AudioSource scream;
+    public AudioSource walk;
 
+    private bool onFloorLastFrame = false;
+
+    public AudioSource jump;
     bool skateboarding = false;
     
 
@@ -33,7 +38,8 @@ public class CharacterScript : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponentInChildren(typeof(Animator)) as Animator;
         sanityScript = gameObject.GetComponent<SanityScript>();
-        gameOverScreen.SetActive(false);     
+        gameOverScreen.SetActive(false);   
+        
     }
 
     // Update is called once per frame
@@ -46,6 +52,7 @@ public class CharacterScript : MonoBehaviour
         Run();
         Animate();
         GameOver();
+        PlaySound();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -87,6 +94,7 @@ public class CharacterScript : MonoBehaviour
         // If the character collides with an obstacle without the dumpster, restart its position
         if(!attached) {
             dead = true;
+            scream.Play();
             reason = "debris";
         } 
 
@@ -293,7 +301,7 @@ public class CharacterScript : MonoBehaviour
 
     // Restart the scene if Violet Drops
     void GameOver(){
-        if (rigidBody.position.y < -5.0f){
+        if (rigidBody.position.y < -3.0f){
             dead = true;
             reason = "pit";
         }
@@ -308,7 +316,7 @@ public class CharacterScript : MonoBehaviour
 
     IEnumerator GameOverScreen()
     // Transition Game Over screen for 5 seconds
-    {
+    {;
         ReasonDying(reason);
         gameOverScreen.SetActive(true);
         yield return new WaitForSeconds(5.0f);
@@ -340,6 +348,41 @@ public class CharacterScript : MonoBehaviour
         
 
     }
+
+    void PlaySound(){
+        
+        if (!isGrounded && !jump.isPlaying){
+           StartCoroutine(PlaySounds());
+        }
+
+        else if( (currentAction == "Walking Foward" || currentAction == "Pushing" || currentAction == "Running Foward") && isGrounded && !walk.isPlaying ){
+            
+            walk.Play();
+        }
+
+
+        else{
+            walk.Pause();
+            jump.Pause();
+        }
+
+        onFloorLastFrame = isGrounded;
+    }
+
+    IEnumerator PlaySounds() {
+
+        if(speed > 3.0f){
+            yield return new WaitForSeconds(2.0f);
+            jump.Play();
+        }
+
+        else{
+            yield return new WaitForSeconds(1.4f);
+            jump.Play();
+        }
+           
+        }
+ 
      
 
 }
