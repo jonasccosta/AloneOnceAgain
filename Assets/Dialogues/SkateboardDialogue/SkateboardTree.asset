@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SkateboardTree
   m_EditorClassIdentifier: 
   characterName: 
-  startingSentence: {fileID: 0}
+  startingSentence: {fileID: 11400000, guid: 7bb4423285049384f842bc8d9a2515fe, type: 2}

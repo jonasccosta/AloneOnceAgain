@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
   m_Name: Skateboard1
   m_EditorClassIdentifier: 
-  text: text
-  nextSentence: {fileID: 0}
-  attachedFacePortrait: 
+  text: Of all things to reappear, Pearl's skateboard.
+  nextSentence: {fileID: 11400000, guid: 4db2a3a2da9c9044e9a0e27133297461, type: 2}
+  attachedFacePortrait: PearlNeutral
+  pastDialogue: 0
