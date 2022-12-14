@@ -9,6 +9,7 @@ public class Sentence : ScriptableObject
     public string text = "text";
     public Sentence nextSentence;
     public string attachedFacePortrait;
+    public string attachedEvent;
     public bool pastDialogue;
 }
 

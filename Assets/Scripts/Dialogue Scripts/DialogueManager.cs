@@ -11,6 +11,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject character;
     public GameObject dialogueBorder;
     public GameObject characterPortrait;
+    public GameObject audioSource;
     public bool endedDialogue;
     public bool skip;
     public bool typing;
@@ -25,6 +26,7 @@ public class DialogueManager : MonoBehaviour
     Sprite VIOLETHAPPY;
     Sprite VIOLETSAD;
     Sprite VIOLETAFRAID;
+    Sprite VIOLETSURPRISE;
     Sprite FATHER;
     Sprite FRIENDS;
 
@@ -34,6 +36,7 @@ public class DialogueManager : MonoBehaviour
         VIOLETHAPPY = Resources.Load <Sprite>("CharacterPortraits/Portrait_Happy");
         VIOLETSAD = Resources.Load <Sprite>("CharacterPortraits/Portrait_Sad");
         VIOLETAFRAID = Resources.Load <Sprite>("CharacterPortraits/Portrait_Afraid");
+        VIOLETSURPRISE = Resources.Load <Sprite>("CharacterPortraits/Portrait_Surprise");
         FATHER = Resources.Load <Sprite>("CharacterPortraits/Portrait_Father");
         FRIENDS = Resources.Load <Sprite>("CharacterPortraits/Portrait_Friends");
     }
@@ -50,6 +53,7 @@ public class DialogueManager : MonoBehaviour
         characterPortrait.SetActive(true);
         character.GetComponent<CharacterScript>().currentAction = "Idle";
         character.GetComponent<CharacterScript>().anim.Play("Idle Animation");
+        character.GetComponent<CharacterScript>().walk.Pause();
         character.GetComponent<CharacterScript>().enabled = false;
         DisplaySentence();
     }
@@ -73,7 +77,12 @@ public class DialogueManager : MonoBehaviour
         else{
             dialogueUIText.fontStyle = (FontStyles) FontStyle.Normal;
         }
-        // dialogueUIText.text = sentence;
+
+        if (currentSentence.attachedEvent == "EnterHouse"){
+            Destroy(character);
+            audioSource.GetComponent<AudioSource>().enabled = true;
+        }
+
         StopAllCoroutines();
         if(!skip){
             StartCoroutine(TypeSentence(sentence));
@@ -112,6 +121,9 @@ public class DialogueManager : MonoBehaviour
         }
         else if (currentFacePortrait == "VioletAfraid"){
             characterPortrait.GetComponent<Image>().sprite = VIOLETAFRAID;
+        }
+        else if (currentFacePortrait == "VioletSurprise"){
+            characterPortrait.GetComponent<Image>().sprite = VIOLETSURPRISE;
         }
         else if (currentFacePortrait == "Father"){
             characterPortrait.GetComponent<Image>().sprite = FATHER;

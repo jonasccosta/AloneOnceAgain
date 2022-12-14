@@ -16,3 +16,5 @@ MonoBehaviour:
     her tests because she studies, so be like her.
   nextSentence: {fileID: 11400000, guid: 2a4d7a35e37c04e41a3d9d0671067eed, type: 2}
   attachedFacePortrait: Father
+  attachedEvent: 
+  pastDialogue: 1

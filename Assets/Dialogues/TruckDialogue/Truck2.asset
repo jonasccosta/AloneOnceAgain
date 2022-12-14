@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: Why is it here? To remind me of the past?
   nextSentence: {fileID: 11400000, guid: 601428771683bcc4892c3bc4d439460a, type: 2}
-  attachedFacePortrait: VioletNeutral
+  attachedFacePortrait: VioletSurprise
+  attachedEvent: 
+  pastDialogue: 0

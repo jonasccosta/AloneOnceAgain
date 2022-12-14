@@ -15,3 +15,5 @@ MonoBehaviour:
   text: Oh honey, not now. I'm tired, so just go study.
   nextSentence: {fileID: 11400000, guid: eac0ed10ea0f4a54288801758249da84, type: 2}
   attachedFacePortrait: Father
+  attachedEvent: 
+  pastDialogue: 1

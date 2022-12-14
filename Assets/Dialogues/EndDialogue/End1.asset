@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
-  m_Name: Intro4
+  m_Name: End1
   m_EditorClassIdentifier: 
-  text: Mom? Dad?! Are they okay?!
-  nextSentence: {fileID: 11400000, guid: 474326888686266438faeba1b308206b, type: 2}
-  attachedFacePortrait: VioletSad
+  text: Finally, I made it home.
+  nextSentence: {fileID: 11400000, guid: cad5663589ec3ce469a08861e2aa3230, type: 2}
+  attachedFacePortrait: VioletHappy
   attachedEvent: 
   pastDialogue: 0

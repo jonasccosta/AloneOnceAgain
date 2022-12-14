@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: What's going on? The sky... the neighborhood!
   nextSentence: {fileID: 11400000, guid: d31cc684d55f0fd4aba1047c886e2b27, type: 2}
-  attachedFacePortrait: VioletSad
+  attachedFacePortrait: VioletSurprise
+  attachedEvent: 
+  pastDialogue: 0

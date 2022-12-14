@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
-  m_Name: Intro4
+  m_Script: {fileID: 11500000, guid: 7b45f04700b03e647abcc7b4f5eba4a5, type: 3}
+  m_Name: EndTree
   m_EditorClassIdentifier: 
-  text: Mom? Dad?! Are they okay?!
-  nextSentence: {fileID: 11400000, guid: 474326888686266438faeba1b308206b, type: 2}
-  attachedFacePortrait: VioletSad
-  attachedEvent: 
-  pastDialogue: 0
+  characterName: 
+  startingSentence: {fileID: 11400000, guid: cdadcd7cc8f8aea4088d4594297767b4, type: 2}

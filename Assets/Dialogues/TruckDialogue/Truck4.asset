@@ -16,3 +16,5 @@ MonoBehaviour:
     grades.
   nextSentence: {fileID: 11400000, guid: d51130992fddafc4a90667c6496afcac, type: 2}
   attachedFacePortrait: Father
+  attachedEvent: 
+  pastDialogue: 1
