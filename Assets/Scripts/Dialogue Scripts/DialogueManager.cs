@@ -12,6 +12,8 @@ public class DialogueManager : MonoBehaviour
     public GameObject dialogueBorder;
     public GameObject characterPortrait;
     public bool endedDialogue;
+    public bool skip;
+    public bool typing;
 
     private DialogueTree dialogue;
     private Sentence currentSentence = null;
@@ -40,6 +42,8 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(DialogueTree dialogueTree){
         dialogue = dialogueTree;
         endedDialogue = false;
+        skip = false;
+        typing = false;
         currentSentence = dialogue.startingSentence;
         dialogueCanvas.enabled = true;
         dialogueBorder.SetActive(true);
@@ -52,6 +56,8 @@ public class DialogueManager : MonoBehaviour
 
     public void AdvanceSentence(){
         currentSentence = currentSentence.nextSentence;
+        skip = false;
+        typing = false;
         DisplaySentence();
     }
 
@@ -67,18 +73,27 @@ public class DialogueManager : MonoBehaviour
         else{
             dialogueUIText.fontStyle = (FontStyles) FontStyle.Normal;
         }
-        dialogueUIText.text = sentence;
+        // dialogueUIText.text = sentence;
         StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence));
+        if(!skip){
+            StartCoroutine(TypeSentence(sentence));
+        }
+        else if(skip){
+            dialogueUIText.text = sentence;
+        }
     }
 
     IEnumerator TypeSentence(string sentence){
+        typing = true;
         dialogueUIText.text = "";
         SetCharacterPortrait();
         foreach(char letter in sentence.ToCharArray()){
             dialogueUIText.text += letter;
-            yield return new WaitForSeconds(0.05f);
+            if (!skip){
+                yield return new WaitForSeconds(0.05f);
+            }
         }
+        typing = false;
     }
 
     void SetCharacterPortrait(){
