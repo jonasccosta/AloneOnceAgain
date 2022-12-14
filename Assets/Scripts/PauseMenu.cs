@@ -31,6 +31,7 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void PauseGame()
+    // pause game
     {
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
@@ -38,6 +39,7 @@ public class PauseMenu : MonoBehaviour
     } 
 
     public void ResumeGame()
+    // resuemes games
     {
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
@@ -45,14 +47,22 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void GoToMainMenu()
+    // takes user to the game title
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("GameTitle");
     }
 
     public void QuitGame()
+    //Quits the game. It only works outside of unity enviroment
     {
         Application.Quit();
+    }
+
+    public bool animationBoo()
+    // returns the isPaused menu boolean
+    {
+        return isPaused;
     }
 
 }

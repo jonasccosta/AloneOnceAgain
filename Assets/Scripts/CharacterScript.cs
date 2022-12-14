@@ -25,6 +25,7 @@ public class CharacterScript : MonoBehaviour
 
     public AudioSource jump;
     bool skateboarding = false;
+    PauseMenu pauseMenu; // to call function 
     
 
     // Stores current action of the character or idle if there is no action
@@ -38,7 +39,8 @@ public class CharacterScript : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponentInChildren(typeof(Animator)) as Animator;
         sanityScript = gameObject.GetComponent<SanityScript>();
-        gameOverScreen.SetActive(false);   
+        gameOverScreen.SetActive(false);  
+        pauseMenu = FindObjectOfType<PauseMenu>(); 
         
     }
 
@@ -53,6 +55,7 @@ public class CharacterScript : MonoBehaviour
         Animate();
         GameOver();
         PlaySound();
+        stopAnimation();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -382,6 +385,15 @@ public class CharacterScript : MonoBehaviour
         }
            
         }
+    void stopAnimation(){
+        // stops animation if pause menu is shown
+        if (pauseMenu.animationBoo()){
+            anim.gameObject.GetComponent<Animator>().enabled = false;
+        }
+        else{
+            anim.gameObject.GetComponent<Animator>().enabled = true;
+        }
+    }
  
      
 
