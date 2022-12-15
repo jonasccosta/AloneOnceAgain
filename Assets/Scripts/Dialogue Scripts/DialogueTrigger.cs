@@ -9,11 +9,17 @@ public class DialogueTrigger : MonoBehaviour
     public GameObject disabler;
 
     public void OnTriggerEnter2D(Collider2D other){
-        dialogueManager.StartDialogue(dialogue);
+        if(other.tag == "Player"){
+            dialogueManager.StartDialogue(dialogue);
+        }
+        // dialogueManager.StartDialogue(dialogue);
     }
 
     // Calls to disable the trigger once the player finishes the dialogue tree, when they exit the trigger
     public void OnTriggerExit2D(Collider2D other){
-        disabler.GetComponent<DialogueTriggerDisabler>().disableTrigger();
+        if(other.tag == "Player"){
+            disabler.GetComponent<DialogueTriggerDisabler>().disableTrigger();
+        }
+        // disabler.GetComponent<DialogueTriggerDisabler>().disableTrigger();
     }
 }

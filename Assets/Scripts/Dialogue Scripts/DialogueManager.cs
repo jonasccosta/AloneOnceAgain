@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class DialogueManager : MonoBehaviour
@@ -82,6 +83,9 @@ public class DialogueManager : MonoBehaviour
         if (currentSentence.attachedEvent == "EnterHouse"){
             Destroy(character);
             audioSource.GetComponent<AudioSource>().enabled = true;
+        }
+        else if (currentSentence.attachedEvent == "End"){
+            SceneManager.LoadScene("EndCutscene");
         }
 
         StopAllCoroutines();

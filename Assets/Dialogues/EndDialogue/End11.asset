@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
-  m_Name: End10
+  m_Name: End11
   m_EditorClassIdentifier: 
-  text: Maybe I'm just tired, I should probably rest a bit to clear my head.
-  nextSentence: {fileID: 11400000, guid: bb579427fa505c34f8d8c89a7d170a2a, type: 2}
+  text: 
+  nextSentence: {fileID: 0}
   attachedFacePortrait: VioletNeutral
-  attachedEvent: 
+  attachedEvent: End
   pastDialogue: 0

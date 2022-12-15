@@ -12,7 +12,12 @@ public class SceneChanger : MonoBehaviour
     {
         changeTime -= Time.deltaTime;
         if(changeTime <= 0){
-            SceneManager.LoadScene(sceneName);
+            if(sceneName == "Quit"){
+                Application.Quit();
+            }
+            else{
+                SceneManager.LoadScene(sceneName);
+            }
         }
     }
 }
