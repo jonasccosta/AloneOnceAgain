@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
   m_Name: Dumpster6
   m_EditorClassIdentifier: 
-  text: I need to get through this debris to go home. The dumpster should be heavy
-    enough to break through it if I push it.
-  nextSentence: {fileID: 0}
+  text: I need to get through this debris to go home.
+  nextSentence: {fileID: 11400000, guid: 2671e2346418a854cb995d8dc06f9b81, type: 2}
   attachedFacePortrait: VioletNeutral
+  attachedEvent: 
+  pastDialogue: 0

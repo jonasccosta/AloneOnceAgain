@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Skateboard5
   m_EditorClassIdentifier: 
   text: Just go home and play with your stupid video games, or watch your fucking
-    anime. That's all you ever talk about anyways.
+    anime.
   nextSentence: {fileID: 11400000, guid: 4db8d4eb631d4cd4c9d7e821646a2179, type: 2}
   attachedFacePortrait: Friends
+  attachedEvent: 
   pastDialogue: 1

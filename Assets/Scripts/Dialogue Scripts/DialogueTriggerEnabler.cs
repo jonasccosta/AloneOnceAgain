@@ -9,6 +9,7 @@ public class DialogueTriggerEnabler : MonoBehaviour
     private static bool introSeen = false;
     private static bool dumpsterSeen = false;
     private static bool truckSeen = false;
+    private static bool skateSeen = false;
 
     // Only allows for one iteration of dialogue to be played, even after dying
     // Note: This is an inefficient method, but for now it works
@@ -20,6 +21,9 @@ public class DialogueTriggerEnabler : MonoBehaviour
             trigger.SetActive(true);
         }
         else if (introSeen && dumpsterSeen && !truckSeen && this.gameObject.name == "TruckEnabler"){
+            trigger.SetActive(true);
+        }
+        else if (introSeen && dumpsterSeen && truckSeen && !skateSeen && this.gameObject.name == "SkateEnabler"){
             trigger.SetActive(true);
         }
     }
@@ -34,6 +38,9 @@ public class DialogueTriggerEnabler : MonoBehaviour
         }
         else if(this.gameObject.name == "TruckEnabler"){
             truckSeen = true;
+        }
+        else if(this.gameObject.name == "SkateEnabler"){
+            skateSeen = true;
         }
     }
 }

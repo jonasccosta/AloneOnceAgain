@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
   m_Name: Skateboard7
   m_EditorClassIdentifier: 
-  text: Still though, I can see some debris up ahead. Hmm, a skateboard and a row
-    of debris.
+  text: ... I just wanted to hang out with my sister. Nobody else would play with
+    me. It's not fair to take her away!
   nextSentence: {fileID: 11400000, guid: 86a1c73c585a0214390dccc3d9a447fd, type: 2}
-  attachedFacePortrait: VioletNeutral
+  attachedFacePortrait: VioletSad
+  attachedEvent: 
   pastDialogue: 0

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
   m_Name: Skateboard6
   m_EditorClassIdentifier: 
-  text: ... I just wanted to hang out with my sister. Nobody else would play with
-    me. It's not fair to take her away!
+  text: That's all you ever talk about anyways.
   nextSentence: {fileID: 11400000, guid: 5e4f1e4b89ac6c643af36f28a7930668, type: 2}
-  attachedFacePortrait: VioletSad
-  pastDialogue: 0
+  attachedFacePortrait: Friends
+  attachedEvent: 
+  pastDialogue: 1

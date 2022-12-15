@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfb586688d2f634db975695b71c8ed7, type: 3}
   m_Name: Skateboard8
   m_EditorClassIdentifier: 
-  text: Is it finally time for me to use some eighth grade physics?
-  nextSentence: {fileID: 0}
-  attachedFacePortrait: VioletHappy
+  text: Still though, I can see some debris up ahead. Hmm, a skateboard and a row
+    of debris.
+  nextSentence: {fileID: 11400000, guid: 746f1017309df8e44a416171a1dd7344, type: 2}
+  attachedFacePortrait: VioletNeutral
+  attachedEvent: 
   pastDialogue: 0

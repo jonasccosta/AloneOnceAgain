@@ -54,6 +54,7 @@ public class DialogueManager : MonoBehaviour
         character.GetComponent<CharacterScript>().currentAction = "Idle";
         character.GetComponent<CharacterScript>().anim.Play("Idle Animation");
         character.GetComponent<CharacterScript>().walk.Pause();
+        character.GetComponent<CharacterScript>().jump.Pause();
         character.GetComponent<CharacterScript>().enabled = false;
         DisplaySentence();
     }
