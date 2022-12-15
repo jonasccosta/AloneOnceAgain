@@ -26,6 +26,9 @@ public class DialogueTriggerEnabler : MonoBehaviour
         else if (introSeen && dumpsterSeen && truckSeen && !skateSeen && this.gameObject.name == "SkateEnabler"){
             trigger.SetActive(true);
         }
+        else if (introSeen && dumpsterSeen && truckSeen && skateSeen && this.gameObject.name == "EndEnabler"){
+            trigger.SetActive(true);
+        }
     }
 
     public void OnTriggerExit2D(Collider2D other){
