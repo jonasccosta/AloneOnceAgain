@@ -11,7 +11,7 @@ This is a 2d side-scroller where Violet (The protagonist) has to traverse the te
 * Jump: Hop on top of platforms and other things
 * Push: Displace objects to help destroy obstacles and reach difficult areas. 
 
-## Health:
+## Health
 The sanity of Violet slowly decrease over time. The player has to move fast in order to reach the end of the map without losing all of Violet sanity points.
 
 ## Items
